@@ -30,7 +30,6 @@ jobs:
 
       - name: create jwt.properties
         run: |
-#          mkdir ./src/main/resources
           cd ./src/main/resources
           touch ./jwt.properties
           echo "${{ secrets.JWT_APPLICATION }}" > ./jwt.properties
