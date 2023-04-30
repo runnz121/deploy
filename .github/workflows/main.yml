@@ -61,7 +61,7 @@ jobs:
         run: |
           aws s3 cp \
           --region ${{ env.AWS_REGION }} 
-          ./deploy.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+          ./deploy.zip s3://${{ env.S3_BUCKET_NAME }}/deploy.zip
 
 #      - name: Code Deploy
 #        run: |
