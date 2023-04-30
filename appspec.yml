@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ubuntu/deploy_test/
+    destination: /home/ubuntu/deploy_test
     overwrite: yes
 
 permissions:
@@ -13,4 +13,7 @@ permissions:
 
 hooks:
   ApplicationStart:
-    - location: ./scripts/deploy.sh
+    - location: scripts/deploy.sh
+      timeout: 120
+      runas: ubuntu
+
