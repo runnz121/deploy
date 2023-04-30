@@ -4,3 +4,9 @@ files:
   - source: /
     destination: /home/ubuntu/deploy_test/
     overwrite: yes
+
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
