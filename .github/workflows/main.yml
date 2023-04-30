@@ -29,13 +29,9 @@ jobs:
           distribution: 'temurin'
 
       - name: create jwt.properties
-        run: sudo touch ./src/main/resources/jwt.properties
-
-      - name: echo jwt.properties
-        run: echo "${{ secrets.JWT_APPLICATION }}" > ./src/main/resources/jwt.properties
-
-      - name: cat jwt.properties
-        run: sudo cat ./src/main/resources/jwt.properties
+      - run: touch ./src/main/resources/jwt.properties
+      - run: echo "${{ secrets.JWT_APPLICATION }}" > ./src/main/resources/jwt.properties
+      - run: cat ./src/main/resources/jwt.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
