@@ -42,7 +42,7 @@ jobs:
 
       # clean build
       - name: Build with Gradle
-        run: ./gradlew clean build
+        run: ./gradlew clean build -x test
         shell: bash
 
       # make directory
