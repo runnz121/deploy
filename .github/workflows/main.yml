@@ -28,6 +28,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: create jwt.properties
+        run: touch ./src/main/resources/jwt.properties
+
+      - name: echo jwt.properties
+        run: echo "${{ secrets.JWT_APPLICATION }}" > ./src/main/resources/jwt.properties
+
+      - name: cat jwt.properties
+        run: cat ./src/main/resources/jwt.properties
+
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
@@ -52,7 +61,6 @@ jobs:
       # zip 파일 생성
       - name: Make zip file
         run: zip -r -qq -j ./deploy.zip ./deployTest
-
 
       # aws credential 생성
       - name: Configure AWS credentials
