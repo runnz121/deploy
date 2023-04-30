@@ -11,6 +11,7 @@ env:
   AWS_REGION: ap-northeast-2
   CODEDEPLOY_NAME: toyCommunity
   CODEDEPLOY_GROUP: deploywithGitHubActions
+  APPLICATION_NAME: deploytest
 
 jobs:
   build:
@@ -63,11 +64,12 @@ jobs:
           --region ${{ env.AWS_REGION }} \
           ./deploy.zip s3://${{ env.S3_BUCKET_NAME }}/
 
-#      - name: Code Deploy
-#        run: |
-#          aws deploy create-deployment
-#          --application-name $CODEDEPLOY_NAME
-#          --deployment-config-name CodeDeployDefault.AllAtOnce
-#          --deployment-group-name $CODEDEPLOY_GROUP
-#          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+      - name: Code Deploy
+        run: |
+          aws deploy create-deployment \
+          --application-name $CODEDEPLOY_NAME \
+          --deployment-config-name CodeDeployDefault.AllAtOnce \
+          --file-exists-behavior OVERWRITE \
+          --deployment-group-name $CODEDEPLOY_GROUP \
+          --s3-location bucket=${{ env.S3_BUCKET_NAME }},bundleType=zip,key=deploy.zip
 
