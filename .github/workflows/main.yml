@@ -29,8 +29,8 @@ jobs:
           distribution: 'temurin'
 
       - name: create jwt.properties
-        uses: actions/checkout@v3
         run: |
+          mkdir ./src/main/resources
           cd ./src/main/resources
           touch ./jwt.properties
           echo "${{ secrets.JWT_APPLICATION }}" > ./src/main/resources/jwt.properties
