@@ -28,13 +28,12 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: create jwt.properties
+      - name: create jwt.yml
         run: |
           mkdir ./src/main/resources
           cd ./src/main/resources
-          touch ./jwt.properties
-          echo "${{ secrets.JWT_APPLICATION }}" > ./jwt.properties
-#          cat ./src/main/resources/jwt.properties
+          touch ./jwt.yml
+          echo "${{ secrets.JWT_APPLICATION }}" > ./jwt.yml
         shell: bash
 
       - name: Grant execute permission for gradlew
