@@ -45,9 +45,14 @@ jobs:
       - name: Copy Jar
         run: cp ./build/libs/*.jar ./deployTest/
 
+      # appspec.yml Copy
+      - name: Copy appspec
+        run: cp appspec.yml ./deployTest/
+
       # zip 파일 생성
       - name: Make zip file
         run: zip -r -qq -j ./deploy.zip ./deployTest
+
 
       # aws credential 생성
       - name: Configure AWS credentials
