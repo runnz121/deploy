@@ -13,9 +13,9 @@ then
   echo "> 종료할것 없음."
 else
   echo "> kill -9 $CURRENT_PID"
-  kill -15 "$CURRENT_PID"
+  sudo kill -15 "$CURRENT_PID"
   sleep 5
 fi
 
 echo "> $JAR_PATH start"
-nohup java -jar "$JAR_PATH" > /dev/null 2> /dev/null < /dev/null
+sudo nohup java -jar "$JAR_PATH" > /dev/null 2> /dev/null < /dev/null
