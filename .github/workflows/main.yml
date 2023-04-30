@@ -58,7 +58,7 @@ jobs:
 
       # zip 파일 생성
       - name: Make zip file
-        run: zip -r -qq -j ./deploy.zip ./deployTest
+        run: zip -qq -r ./$GITHUB_SHA.zip .
 
       # aws credential 생성
       - name: Configure AWS credentials
@@ -73,7 +73,7 @@ jobs:
         run: |
           aws s3 cp \
           --region ${{ env.AWS_REGION }} \
-          ./deploy.zip s3://${{ env.S3_BUCKET_NAME }}/
+          ./$GITHUB_SHA.zip s3://${{ env.S3_BUCKET_NAME }}/
 
       - name: Code Deploy
         run: |
@@ -82,5 +82,5 @@ jobs:
           --deployment-config-name CodeDeployDefault.AllAtOnce \
           --file-exists-behavior OVERWRITE \
           --deployment-group-name $CODEDEPLOY_GROUP \
-          --s3-location bucket=${{ env.S3_BUCKET_NAME }},bundleType=zip,key=deploy.zip
+          --s3-location bucket=${{ env.S3_BUCKET_NAME }},bundleType=zip,key=$GITHUB_SHA.zip
 
