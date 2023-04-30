@@ -44,11 +44,11 @@ jobs:
       - name: Copy Jar
         run: cp ./build/libs/*.jar ./deployTest/
 
-      #
+      # zip 파일 생성
       - name: Make zip file
         run: zip -r -qq -j ./deploy.zip ./deployTest
-        shell: bash
 
+      # aws credential 생성
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -56,11 +56,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # S3 이관
+      # S3 copy
       - name: Upload to S3
         run: |
           aws s3 cp \
-          --region ${{ env.AWS_REGION }} 
+          --region ${{ env.AWS_REGION }} \
           ./deploy.zip s3://${{ env.S3_BUCKET_NAME }}/
 
 #      - name: Code Deploy
