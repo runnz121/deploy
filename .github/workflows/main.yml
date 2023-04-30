@@ -59,6 +59,7 @@ jobs:
       # zip 파일 생성
       - name: Make zip file
         run: zip -qq -r ./$GITHUB_SHA.zip .
+        shell: bash
 
       # aws credential 생성
       - name: Configure AWS credentials
