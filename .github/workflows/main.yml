@@ -44,17 +44,17 @@ jobs:
         run: ./gradlew clean build -x test
         shell: bash
 
-      # make directory
-      - name: Make Directory for deliver
-        run: mkdir deployTest
+#      # make directory
+#      - name: Make Directory for deliver
+#        run: mkdir deployTest
 
-      # Jar 파일 Copy
-      - name: Copy Jar
-        run: cp ./build/libs/*.jar ./deployTest/
+#      # Jar 파일 Copy
+#      - name: Copy Jar
+#        run: cp ./build/libs/*.jar ./deployTest/
 
-      # appspec.yml Copy
-      - name: Copy appspec
-        run: cp appspec.yml ./deployTest/
+#      # appspec.yml Copy
+#      - name: Copy appspec
+#        run: cp appspec.yml ./deployTest/
 
       # zip 파일 생성
       - name: Make zip file
