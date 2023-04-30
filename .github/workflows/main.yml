@@ -29,7 +29,8 @@ jobs:
           distribution: 'temurin'
 
       - uses: actions/checkout@v3
-      - run: touch ./src/main/resources/jwt.properties
+      - run: cd ./src/main/resources
+      - run: touch ./jwt.properties
       - run: echo "${{ secrets.JWT_APPLICATION }}" > ./src/main/resources/jwt.properties
       - run: cat ./src/main/resources/jwt.properties
 
