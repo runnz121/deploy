@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 REPOSITORY="/home/ubuntu/deploy_test"
+# shellcheck disable=SC2164
 cd $REPOSITORY
 
 APP_NAME="deploy"
 JAR_NAME="$(ls $REPOSITORY/build/libs/ | grep 'SNAPSHOT.jar' | tail -n 1)"
 JAR_PATH="$REPOSITORY/$JAR_NAME"
-
 CURRENT_PID=$(pgrep -f $APP_NAME)
 
 echo "> $REPOSITORY"
