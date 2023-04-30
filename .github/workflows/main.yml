@@ -31,12 +31,22 @@ jobs:
         run: chmod +x ./gradlew
         shell: bash
 
+      # clean build
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew clean build
         shell: bash
 
+      # make directory
+      - name: Make Directory for deliver
+        run: mkdir deployTest
+
+      # Jar 파일 Copy
+      - name: Copy Jar
+        run: cp ./build/libs/*.jar ./deployTest/
+
+      #
       - name: Make zip file
-        run: zip -r ./$GITHUB_SHA.zip .
+        run: zip -r -qq -j ./deploy.zip ./deployTest
         shell: bash
 
       - name: Configure AWS credentials
@@ -46,14 +56,18 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ env.AWS_REGION }}
 
+      # S3 이관
       - name: Upload to S3
-        run: aws s3 cp --region ${{ env.AWS_REGION }} ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
-
-      - name: Code Deploy
         run: |
-          aws deploy create-deployment
-          --application-name $CODEDEPLOY_NAME
-          --deployment-config-name CodeDeployDefault.AllAtOnce
-          --deployment-group-name $CODEDEPLOY_GROUP
-          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
+          aws s3 cp \
+          --region ${{ env.AWS_REGION }} 
+          ./deploy.zip s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip
+
+#      - name: Code Deploy
+#        run: |
+#          aws deploy create-deployment
+#          --application-name $CODEDEPLOY_NAME
+#          --deployment-config-name CodeDeployDefault.AllAtOnce
+#          --deployment-group-name $CODEDEPLOY_GROUP
+#          --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$GITHUB_SHA.zip
 
