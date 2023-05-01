@@ -2,7 +2,7 @@
 
 PORT=8080
 
-PID=$(lsof -t -i:$PORT)
+PID=$(lsof -i:$PORT -t)
 
 if [ -z "$PID" ]; then
   echo "No process found running on port $PORT"
