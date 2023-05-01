@@ -24,6 +24,5 @@ sudo killall java
 echo "> $JAR_PATH start"
 #sudo nohup java -jar /home/ubuntu/deploy_test/build/libs/deploy-0.0.1-SNAPSHOT.jar
 #sudo nohup java -jar $JAR_PATH > /dev/null 2> /dev/null < /dev/null
-
 sudo nohup java -jar /home/ubuntu/deploy_test/build/libs/deploy-0.0.1-SNAPSHOT.jar > /dev/null 2> /dev/null < /dev/null &
 #sudo nohup java -jar /home/ubuntu/deploy_test/build/libs/deploy-0.0.1-SNAPSHOT.jar > /dev/null 2> /dev/null < /dev/null

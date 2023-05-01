@@ -15,6 +15,9 @@ public class HealthCheck {
     @Value("${jwt.access-token-expired-time}")
     private String accessExpiredTime;
 
+    @Value("${spring.datasource.username}")
+    private String dbName;
+
     @GetMapping
     public String healthCheck() {
         return secretKey;
@@ -24,4 +27,10 @@ public class HealthCheck {
     public String accessToken() {
         return accessExpiredTime;
     }
+
+    @GetMapping("/db")
+    public String findDb() {
+        return dbName;
+    }
+
 }

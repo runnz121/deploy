@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@PropertySource(value = { "classpath:jwt.properties" })
+@PropertySource(value = { "classpath:jwt.properties", "classpath:db.properties" })
 public class DeployApplication {
 
 	public static void main(String[] args) {
