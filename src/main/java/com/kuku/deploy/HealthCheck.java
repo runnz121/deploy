@@ -12,8 +12,16 @@ public class HealthCheck {
     @Value("${jwt.secret-key}")
     private String secretKey;
 
+    @Value("${jwt.access-token-expired-time}")
+    private String accessExpiredTime;
+
     @GetMapping
     public String healthCheck() {
         return secretKey;
+    }
+
+    @GetMapping("/token")
+    public String accessToken() {
+        return accessExpiredTime;
     }
 }
