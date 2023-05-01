@@ -17,7 +17,7 @@ JAR_PATH=$REPOSITORY/build/libs/deploy-0.0.1-SNAPSHOT.jar
 #  sleep 5
 #fi
 echo "> kill port 8080"
-pid=$(lsof -i:8080 -t); kill -TERM $pid || kill -KILL $pid
+pid=$(lsof -i:8080 -t); kill -9 $pid
 
 echo "> $JAR_PATH start"
 sudo nohup java -jar /home/ubuntu/deploy_test/build/libs/deploy-0.0.1-SNAPSHOT.jar
