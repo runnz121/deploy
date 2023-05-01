@@ -20,7 +20,7 @@ public class HealthCheck {
         return secretKey;
     }
 
-    @GetMapping("/token")
+    @GetMapping("/token1")
     public String accessToken() {
         return accessExpiredTime;
     }
